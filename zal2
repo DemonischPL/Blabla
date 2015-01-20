@@ -1,0 +1,58 @@
+#include<iostream>
+#include<conio.h> 
+#include<iomanip> 
+#include<time.h> 
+#include<stdlib.h>
+
+using namespace std;
+
+void zaptab (int *tab, int size) 
+
+{ 
+	srand (time (NULL)); 
+	for (int i=0; i<size; i++)
+	{ 
+		*(tab+i)=-99+rand()%201; 
+	} 
+}
+
+void poktab(int* tab, int size) 
+{ 
+	cout<<"\nZawartosc tablicy: "; 
+	for (int i=0; i<size; i++)
+{ 
+	cout << *tab++ << ", "; 
+} 
+	cout<<endl; 
+}
+
+float operacja(int *tab, int size, int k, float *result)
+{ 
+	float sum = 0; 
+	int cout = 0; 
+	for (int i=0; i<size; i++)
+	{
+	 if(*tab < k)
+	 { 
+	 	sum += *tab; 
+		cout ++; 
+	 } 
+	} 
+	 *result = sum/cout; 
+}
+
+int main() 
+{ 
+const int size=20; 
+int tab[size]; 
+zaptab(tab,size); 
+poktab(tab,size); 
+cout << "\nPodaj wartosc d  "; 
+int k = 0; 
+cin >> k; 
+float* result = 0; 
+operacja(tab, size, k, result); 
+cout << "\nSrednia elementow tablicy nie wiekszych od " << k << " wynosi: "<< result; 
+getch(); 
+return 0; 
+}
