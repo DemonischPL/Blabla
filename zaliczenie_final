@@ -1,0 +1,66 @@
+#include <iostream>
+#include <iomanip>
+#include <time.h>
+#include <stdlib.h>
+#include<conio.h> 
+
+using namespace std;
+
+void zaptab (int* tab, int size) 
+{
+	srand (time (NULL));
+	for (int i=0; i<size; i++)
+	{
+		*tab++ =-99+rand()%201;
+	}
+}
+
+void poktab(int* tab, int size) 
+{
+	 cout<<"\nZawartosc tablicy: ";
+	 for (int i=0; i<size; i++)
+	 {
+	 	cout << *tab++ << ", ";
+	 }
+	 cout<<endl;
+}
+
+void operacja(int* tab, int size, int k, float* result)
+{
+	float sum = 0;
+	int count = 0;
+	for (int i=0; i<size; i++)
+	{
+		if(*tab < k)
+		{
+		sum += *tab;
+		count ++;
+ 		}
+ 		tab++;
+	}
+	cout << "sum: " << sum << " count: " << count;
+	if(count!= 0)
+	{
+		*result = sum/count;
+	}
+	else
+	{
+		*result = 0.0f;
+	}
+}
+
+int main()
+{
+	const int size=20;
+	int tab[size];
+	zaptab(tab,size);
+	poktab(tab,size);
+	cout << "Podaj k:\n";
+	int k = 0;
+	cin >> k;
+	float result;
+	operacja(tab, size, k, &result);
+	cout << "Wynik: " << result;
+	getch();
+	return 0;
+}
